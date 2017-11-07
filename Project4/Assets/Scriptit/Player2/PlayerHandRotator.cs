@@ -2,15 +2,23 @@
 using System.Collections.Generic;
 using UnityEngine;
 
-public class PlayerHandRotator : MonoBehaviour {
+public class PlayerHandRotator : MonoBehaviour
+{
 
-	// Use this for initialization
-	void Start () {
-		
+	void Start()
+	{
+
 	}
-	
-	// Update is called once per frame
-	void Update () {
-		
+	void FixedUpdate()
+	{
+		Vector2 positionOnScreen = Camera.main.WorldToViewportPoint(transform.position);
+		Vector2 mouseOnScreen = (Vector2)Camera.main.ScreenToViewportPoint(Input.mousePosition);
+
+		float angle = AngleBetweenTwoPoints(positionOnScreen, mouseOnScreen);
+		transform.rotation = Quaternion.Euler(new Vector3(0f, 0f, angle));
+	}
+	public float AngleBetweenTwoPoints(Vector3 a, Vector3 b)
+	{
+		return Mathf.Atan2(a.y - b.y, a.x - b.x) * Mathf.Rad2Deg;
 	}
 }
