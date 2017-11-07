@@ -24,10 +24,10 @@ public class BulletController : MonoBehaviour {
 	// Update is called once per frame
 	void Update () {
 
-		//transform.position += bulletMovement;
+		transform.position += bulletMovement;
 
 		//transform.localRotation *= Quaternion.Euler(bulletRotation);
-		_rb.AddForce(-1*transform.right * speed, ForceMode2D.Impulse);
+		//_rb.AddForce(-1*transform.right * speed, ForceMode2D.Impulse);
 
 	}
 	void OnEnable()
@@ -35,17 +35,18 @@ public class BulletController : MonoBehaviour {
 		switch (powerUpInt)
 		{
 		case 0:
-			/*
+			
 			bulletMovement = -chooseSide*(Vector3.right) * speed * Time.deltaTime;
 			bulletMovement = -chooseSide * (new Vector2(vShot, (0.5f * hshot) * chooseSide)) * speed * Time.deltaTime;
-			bulletRotation = new Vector3(0, 0, 20 * speed * Time.deltaTime);*/
+			bulletRotation = new Vector3(0, 0, 20 * speed * Time.deltaTime);
 			//GetComponent<SpriteRenderer>().sprite = _SpPowerUp0;
 			//GetComponent<CircleCollider2D>().radius = 0.05f;
 			break;
 
 		case 1:
-			/*bulletMovement = Vector3.right * speed * Time.deltaTime;
-			bulletRotation = new Vector3(0, 0, 5 * speed * Time.deltaTime);*/
+			
+			bulletMovement = -Vector3.up * speed * Time.deltaTime;
+			bulletRotation = new Vector3(0, 0, 5 * speed * Time.deltaTime);
 
 			//GetComponent<SpriteRenderer>().sprite = _SpPowerUp1;
 			//GetComponent<CircleCollider2D>().radius = 0.21f;

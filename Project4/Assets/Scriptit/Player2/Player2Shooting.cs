@@ -26,7 +26,7 @@ public class Player2Shooting : MonoBehaviour
 	// Update is called once per frame
 	void Update () {
 
-		if (Input.GetAxis("Fire1") > 0 && Time.time > nextfire)
+		if (Input.GetAxis("Player2Shoot") > 0 && Time.time > nextfire)
 		{
 			Fire();
 			_isFiring = true;
