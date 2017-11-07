@@ -1,9 +1,10 @@
 ﻿<Properties StartupItem="Assembly-CSharp.csproj">
   <MonoDevelop.Ide.Workspace ActiveConfiguration="Debug" PreferredExecutionTarget="Unity.Instance.Unity Editor" />
-  <MonoDevelop.Ide.Workbench ActiveDocument="Assets/Scriptit/Player2/Player2Shooting.cs">
+  <MonoDevelop.Ide.Workbench ActiveDocument="Assets/Scriptit/Player2/PlayerHandRotator.cs">
     <Files>
-      <File FileName="Assets/Scriptit/Player2/Player2Shooting.cs" Line="53" Column="2" />
-      <File FileName="Assets/Scriptit/Player2/PlayerHandRotator.cs" Line="9" Column="3" />
+      <File FileName="Assets/Scriptit/Player2/Player2Shooting.cs" Line="1" Column="1" />
+      <File FileName="Assets/Scriptit/Player2/PlayerHandRotator.cs" Line="18" Column="65" />
+      <File FileName="Assets/Scriptit/Player2/BulletController.cs" Line="41" Column="70" />
     </Files>
   </MonoDevelop.Ide.Workbench>
   <MonoDevelop.Ide.DebuggingService.Breakpoints>
