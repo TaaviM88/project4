@@ -38,6 +38,7 @@ public class PlayerController1 : MonoBehaviour {
         _rearCheck = GetComponentInChildren<RearCheck>();
         _frontCheck = GetComponentInChildren<FrontCheck>();
         _angle = _playerAngle;
+        latestCheckpoint = transform.position;
 	}
 
 	// Update is called once per frame
@@ -145,8 +146,25 @@ public class PlayerController1 : MonoBehaviour {
             //GoToCheckpoint();
             //Debug.Log("Spawnasin perkele");
         }
+        if (col.gameObject.tag == "MovingPlatform")
+        {
+            transform.parent = col.transform;
+        }
+       
 
     }
+    private void OnCollisionExit2D(Collision2D coll)
+    {
+        if (coll.gameObject.tag == "MovingPlatform")
+        {
+            transform.parent = null;
+        }
+    }
+    void OnTriggerEnter2D(Collider2D col) 
+        {
+            if (col.gameObject.CompareTag("Checkpoint"))
+            { updateCheckpoint(); }
+        }
     void updateCheckpoint()
     {
         latestCheckpoint = new Vector3(transform.position.x, transform.position.y, transform.position.z);

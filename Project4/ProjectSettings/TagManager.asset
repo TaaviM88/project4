@@ -7,6 +7,8 @@ TagManager:
   - Bullet
   - Player2
   - KillAxel
+  - MovingPlatform
+  - Checkpoint
   layers:
   - Default
   - TransparentFX
