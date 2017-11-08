@@ -3,7 +3,7 @@ using System.Collections.Generic;
 using UnityEngine;
 
 public class RearCheck : MonoBehaviour {
-
+    float distance = 0.1f;
 	// Use this for initialization
     public LayerMask groundLayer;
 
@@ -12,7 +12,7 @@ public class RearCheck : MonoBehaviour {
 
         Vector2 position = transform.position;
         Vector2 direction = Vector2.down;
-        float distance = 0.1f;
+        
         Debug.DrawRay(position, direction, Color.green);
         RaycastHit2D hit = Physics2D.Raycast(position, direction, distance, groundLayer);
         if (hit.collider != null)
@@ -23,7 +23,7 @@ public class RearCheck : MonoBehaviour {
         return false;
     }
 	// Update is called once per frame
-	void Update () {
+	/*void Update () {
 		
-	}
+	}*/
 }

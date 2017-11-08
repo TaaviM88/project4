@@ -2164,22 +2164,18 @@ Prefab:
       propertyPath: m_RootOrder
       value: 2
       objectReference: {fileID: 0}
-    - target: {fileID: 4195744269012566, guid: 22690e0a20b094e40896fe8c5719c004, type: 2}
-      propertyPath: m_LocalEulerAnglesHint.z
-      value: 0
-      objectReference: {fileID: 0}
     - target: {fileID: 4755522885108228, guid: 22690e0a20b094e40896fe8c5719c004, type: 2}
       propertyPath: m_LocalPosition.x
-      value: 1.221
+      value: 1.19
       objectReference: {fileID: 0}
     - target: {fileID: 4755522885108228, guid: 22690e0a20b094e40896fe8c5719c004, type: 2}
       propertyPath: m_LocalPosition.y
-      value: -1.638
+      value: -1.61
       objectReference: {fileID: 0}
-    - target: {fileID: 114030961777839812, guid: 22690e0a20b094e40896fe8c5719c004,
+    - target: {fileID: 61660363406271386, guid: 22690e0a20b094e40896fe8c5719c004,
         type: 2}
-      propertyPath: _jumpForce
-      value: 6
+      propertyPath: m_IsTrigger
+      value: 1
       objectReference: {fileID: 0}
     m_RemovedComponents: []
   m_ParentPrefab: {fileID: 100100000, guid: 22690e0a20b094e40896fe8c5719c004, type: 2}
