@@ -16,7 +16,7 @@ public class PlayerController1 : MonoBehaviour {
     private Transform GroundCheck, CeilingCheck;
     RearCheck _rearCheck;
     FrontCheck _frontCheck;
-    const float groundedRadius = 1f, ceilingRadius = 0.1f;
+    const float groundedRadius = 0.1f, ceilingRadius = 0.1f;
     private CircleCollider2D ccollider;
     [SerializeField]
     private LayerMask whatIsGround;
@@ -60,7 +60,7 @@ public class PlayerController1 : MonoBehaviour {
                 _grounded = true;
                 _jumping = false;
             }
-            else { _jumping = true; }
+            else { _jumping = true; _grounded = false; }
         }
         if (Input.GetAxis("Horizontal") > 0 && _canMove == true)
         {
@@ -88,7 +88,8 @@ public class PlayerController1 : MonoBehaviour {
         }
         if (Input.GetAxis("Fire1") > 0 && _grounded == true && _canMove == true)
         {
-            if (_rb.velocity.y == 0)
+            //transform.position = new Vector2(_rb.velocity.x, Speed * Time.deltaTime);
+            if (_frontCheck.IsGrounded())
             {
                 _rb.AddForce(new Vector2(0f, _jumpForce), ForceMode2D.Impulse);
                 _grounded = false;
@@ -103,28 +104,42 @@ public class PlayerController1 : MonoBehaviour {
 
         if (_canrotate == true)
         {
-            if (!_frontCheck.IsGrounded() && _jumping == false)
+            if (!_frontCheck.IsGrounded() || !_rearCheck.IsGrounded())
             {
-                Debug.Log("Ei osu maahan");
-                _angle--;
-                transform.rotation = Quaternion.Euler(new Vector3(0, 0, Mathf.Clamp(_angle, _minAngle, _maxAngle)));
-            }
+                if (!_frontCheck.IsGrounded() && _jumping == false)
+                {
+                    Debug.Log("Ei osu maahan");
+                    if (_facingRight)
+                    {
+                        _angle--;
+                    }
+                    else { _angle++; }
+                    transform.rotation = Quaternion.Euler(new Vector3(0, 0, _angle));
+                    //transform.rotation = Quaternion.Euler(new Vector3(0, 0, Mathf.Clamp(_angle, _minAngle, _maxAngle)));
+                }
 
-            if (!_rearCheck.IsGrounded() && _jumping == false)
-            {
-                Debug.Log("Perser ei osu maahan");
-                _angle++;
-                //transform.rotation = Quaternion.Euler(new Vector3(0, 0, _angle));
-                transform.rotation = Quaternion.Euler(new Vector3(0, 0, Mathf.Clamp(_angle, _minAngle, _maxAngle)));
+                if (!_rearCheck.IsGrounded() && _jumping == false)
+                {
+                    Debug.Log("Perser ei osu maahan");
+                    if (_facingRight)
+                    {
+                        _angle++;
+                    }
+                    else { _angle--; }
+                    transform.rotation = Quaternion.Euler(new Vector3(0, 0, _angle));
+                    //transform.rotation = Quaternion.Euler(new Vector3(0, 0, Mathf.Clamp(_angle, _minAngle, _maxAngle)));
+                }
+                //if (_angle <= -45 || _angle >= 45) { _angle = _playerAngle; }
+                transform.rotation = Quaternion.Euler(new Vector3(0, 0, _angle));
             }
-            //if (_angle <= -45 || _angle >= 45) { _angle = _playerAngle; }
         }
-        Debug.Log(_jumping);
+        Debug.Log("Jump" +_jumping);
+        Debug.Log("Grounded " +_grounded);
 
-        if (_rearCheck.IsGrounded() && _frontCheck.IsGrounded())
+        /*if (_rearCheck.IsGrounded() && _frontCheck.IsGrounded())
         {
             _jumping = false;
-        }
+        }*/
 	}
 
         //playerRigidbody2D.velocity = new Vector2(Speed, playerRigidbody2D.velocity.y);
@@ -167,6 +182,7 @@ public class PlayerController1 : MonoBehaviour {
             if (col.gameObject.CompareTag("Checkpoint"))
             { updateCheckpoint(); }
         }
+
     void updateCheckpoint()
     {
         latestCheckpoint = new Vector3(transform.position.x, transform.position.y, transform.position.z);
