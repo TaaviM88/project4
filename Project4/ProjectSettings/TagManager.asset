@@ -9,6 +9,7 @@ TagManager:
   - KillAxel
   - MovingPlatform
   - Checkpoint
+  - DirectionChanger
   layers:
   - Default
   - TransparentFX

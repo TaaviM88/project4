@@ -2,30 +2,58 @@
 using System.Collections.Generic;
 using UnityEngine;
 
-public class MovingPlatform : MonoBehaviour {
-   /* public GameObject Platform;
+public class MovingPlatform : MonoBehaviour
+{
+    public GameObject Platform;
     private CircleCollider2D _cc;
     private Vector3 _offset;
+    int direction = 1;
+    public bool movevertical = true;
 	// Use this for initialization
 	void Start () {
-        _offset = Vector3.up * Platform.GetComponent<BoxCollider2D>().size.y / 8;
+        if (movevertical == true)
+        {
+            _offset = Vector3.right * gameObject.GetComponent<BoxCollider2D>().size.y / 8;
+        }
+        else { _offset = Vector3.up * gameObject.GetComponent<BoxCollider2D>().size.y/8; }
 	}
 	
 	// Update is called once per frame
 	void Update () {
-        transform.position = Platform.transform.position + _offset;
-	}*/
-    public GameObject _wheel;
-    private CircleCollider2D _cc;
-    private Vector3 _offset;
-    void Start()
+       
+            transform.position = gameObject.transform.position + _offset * direction;
+      
+        //Invoke("DirectionChange",1f);
+	}
+
+    void OnCollisionEnter2D(Collision2D other)
     {
-        _offset = Vector3.up * _wheel.GetComponent<CircleCollider2D>().radius / 2;
+        if (other.transform.tag == "Player")
+        {
+            //other.transform.SetParent(transform, false);
+
+            // you can also do
+             other.transform.parent = transform;
+        }
+
+    }
+    void OnCollisionExit2D(Collision2D other)
+    {
+        if (other.transform.tag == "Player")
+        {
+           
+             other.transform.parent = null;
+        }
     }
 
-    // Update is called once per frame
-    void Update()
+    void OnTriggerEnter2D(Collider2D col)
     {
-        transform.position = _wheel.transform.position + _offset;
+        if (col.gameObject.CompareTag("DirectionChanger"))
+        { DirectionChange();}
     }
+    void DirectionChange()
+    {
+        direction *= -1;
+    }
+
 }

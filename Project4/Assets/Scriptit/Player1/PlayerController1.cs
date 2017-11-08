@@ -16,7 +16,7 @@ public class PlayerController1 : MonoBehaviour {
     private Transform GroundCheck, CeilingCheck;
     RearCheck _rearCheck;
     FrontCheck _frontCheck;
-    const float groundedRadius = 0.1f, ceilingRadius = 0.1f;
+    const float groundedRadius = 1f, ceilingRadius = 0.1f;
     private CircleCollider2D ccollider;
     [SerializeField]
     private LayerMask whatIsGround;
@@ -148,7 +148,8 @@ public class PlayerController1 : MonoBehaviour {
         }
         if (col.gameObject.tag == "MovingPlatform")
         {
-            transform.parent = col.transform;
+            //transform.parent = col.transform;
+            return;
         }
        
 
@@ -157,7 +158,8 @@ public class PlayerController1 : MonoBehaviour {
     {
         if (coll.gameObject.tag == "MovingPlatform")
         {
-            transform.parent = null;
+            //transform.parent = null;
+            return;
         }
     }
     void OnTriggerEnter2D(Collider2D col) 
