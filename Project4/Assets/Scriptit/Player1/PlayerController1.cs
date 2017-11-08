@@ -138,7 +138,7 @@ public class PlayerController1 : MonoBehaviour {
         }*/
         if (col.gameObject.tag == "KillAxel")
         {
-            _canMove = false;
+            //_canMove = false;
             //anime.Play("PlayerDeath");
             //anime.SetInteger("State", 3);
             Invoke("GoToCheckpoint", 0.3f);
