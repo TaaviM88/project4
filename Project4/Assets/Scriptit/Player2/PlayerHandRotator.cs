@@ -5,12 +5,14 @@ using UnityEngine;
 public class PlayerHandRotator : MonoBehaviour
 {
 
+
 	void Start()
 	{
 
 	}
 	void FixedUpdate()
 	{
+		
 		Vector2 positionOnScreen = Camera.main.WorldToViewportPoint(transform.position);
 		Vector2 mouseOnScreen = (Vector2)Camera.main.ScreenToViewportPoint(Input.mousePosition);
 

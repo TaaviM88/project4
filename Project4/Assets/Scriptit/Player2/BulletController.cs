@@ -16,6 +16,7 @@ public class BulletController : MonoBehaviour {
 	Vector2 mouseOnScreen;
 	Rigidbody2D _rb;
 	public GameObject explosionprefab;
+
 	// Use this for initialization
 	void Start () {
 		_rb = GetComponent<Rigidbody2D>();
@@ -66,25 +67,25 @@ public class BulletController : MonoBehaviour {
 		Invoke("Destroy", deathTimer);
 	}
 
-	/*void Destroy()
+	void Destroy()
 	{
-		GameObject explosion = GameObject.Instantiate(explosionprefab);
-		explosion.transform.position = this.transform.position;
+		//GameObject explosion = GameObject.Instantiate(explosionprefab);
+		//explosion.transform.position = this.transform.position;
 		//Instantiate(explosion,transform.parent.position);
 		gameObject.SetActive(false);
-	}*/
+	}
 	void OnDisable()
 	{
 		CancelInvoke();
 	}
 
-	/*private void OnCollisionEnter2D(Collision2D coll)
+	private void OnCollisionEnter2D(Collision2D coll)
 	{
-		// if (coll.gameObject.tag == "Enemy" || coll.gameObject.tag == "Obstacle")
-		if(coll.gameObject.tag == "CameraCollision" || coll.gameObject.tag == "Obstacle")
+		if (coll.gameObject.tag == "Player")
+		//if(coll.gameObject.tag == "CameraCollision" || coll.gameObject.tag == "Obstacle")
 		{
 			Destroy();
 		}
-	}*/
+	}
 
 }
