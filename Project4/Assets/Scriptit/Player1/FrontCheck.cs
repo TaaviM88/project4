@@ -10,7 +10,6 @@ public class FrontCheck : MonoBehaviour
 
   public bool IsGrounded()
     {
-
         Vector2 position = transform.position;
         Vector2 direction = Vector2.down;
         float distance = 0.5f;

@@ -23,7 +23,9 @@ public class PlayerController1 : MonoBehaviour {
     bool _canMove;
     private float _playerAngle = 0f;
     private float _angle = 0;
-
+    private float _minAngle = -25f;
+    private float _maxAngle = 25f;
+    public bool _canrotate;
 	// Use this for initialization
 	void Start () {
 		GroundCheck = transform.Find("GroundCheck");
@@ -55,7 +57,9 @@ public class PlayerController1 : MonoBehaviour {
             if (colliders[i].gameObject != gameObject)
             {
                 _grounded = true;
+                _jumping = false;
             }
+            else { _jumping = true; }
         }
         if (Input.GetAxis("Horizontal") > 0 && _canMove == true)
         {
@@ -96,19 +100,28 @@ public class PlayerController1 : MonoBehaviour {
 
         }
 
-        if (!_rearCheck.IsGrounded() &&_jumping ==false)
+        if (_canrotate == true)
         {
-            transform.rotation = Quaternion.Euler(new Vector3(0, 0, _angle));
-            _angle++;
-        }
-        if(!_frontCheck.IsGrounded() && _jumping ==false)
-        {
-            transform.rotation = Quaternion.Euler(new Vector3(0, 0, _angle));
-            _angle--;
-        }
-      
-        
+            if (!_frontCheck.IsGrounded() && _jumping == false)
+            {
+                _angle++;
+                transform.rotation = Quaternion.Euler(new Vector3(0, 0, Mathf.Clamp(_angle, _minAngle, _maxAngle)));
+            }
 
+            if (!_rearCheck.IsGrounded() && _jumping == false)
+            {
+                _angle--;
+                //transform.rotation = Quaternion.Euler(new Vector3(0, 0, _angle));
+                transform.rotation = Quaternion.Euler(new Vector3(0, 0, Mathf.Clamp(_angle, _minAngle, _maxAngle)));
+            }
+            //if (_angle <= -45 || _angle >= 45) { _angle = _playerAngle; }
+        }
+        Debug.Log(_jumping);
+
+        if (_rearCheck.IsGrounded() && _frontCheck.IsGrounded())
+        {
+            _jumping = false;
+        }
 	}
 
         //playerRigidbody2D.velocity = new Vector2(Speed, playerRigidbody2D.velocity.y);

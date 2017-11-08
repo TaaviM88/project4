@@ -55,6 +55,7 @@
      <Compile Include="Assets\Scriptit\Player1\PlayerController1.cs" />
      <Compile Include="Assets\Scriptit\Player1\RearCheck.cs" />
      <Compile Include="Assets\Scriptit\Player2\BulletController.cs" />
+     <Compile Include="Assets\Scriptit\Player2\Player2Movement.cs" />
      <Compile Include="Assets\Scriptit\Player2\Player2Shooting.cs" />
      <Compile Include="Assets\Scriptit\Player2\PlayerHandRotator.cs" />
      <Compile Include="Assets\Scriptit\tyhja.cs" />
