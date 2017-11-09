@@ -10,6 +10,7 @@ TagManager:
   - MovingPlatform
   - Checkpoint
   - DirectionChanger
+  - Platform
   layers:
   - Default
   - TransparentFX

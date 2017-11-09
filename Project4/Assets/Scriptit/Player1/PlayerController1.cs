@@ -101,12 +101,10 @@ public class PlayerController1 : MonoBehaviour {
             }
 
         }
-
-        if (_canrotate == true)
-        {
-            if (!_frontCheck.IsGrounded() || !_rearCheck.IsGrounded())
+            if (_jumping == false && _canrotate == true)
             {
-                if (!_frontCheck.IsGrounded() && _jumping == false)
+
+               if((!_frontCheck.IsGrounded() && !_rearCheck.IsGrounded()))
                 {
                     Debug.Log("Ei osu maahan");
                     if (_facingRight)
@@ -115,11 +113,8 @@ public class PlayerController1 : MonoBehaviour {
                     }
                     else { _angle++; }
                     transform.rotation = Quaternion.Euler(new Vector3(0, 0, _angle));
-                    //transform.rotation = Quaternion.Euler(new Vector3(0, 0, Mathf.Clamp(_angle, _minAngle, _maxAngle)));
-                }
 
-                if (!_rearCheck.IsGrounded() && _jumping == false)
-                {
+
                     Debug.Log("Perser ei osu maahan");
                     if (_facingRight)
                     {
@@ -127,12 +122,12 @@ public class PlayerController1 : MonoBehaviour {
                     }
                     else { _angle--; }
                     transform.rotation = Quaternion.Euler(new Vector3(0, 0, _angle));
-                    //transform.rotation = Quaternion.Euler(new Vector3(0, 0, Mathf.Clamp(_angle, _minAngle, _maxAngle)));
-                }
-                //if (_angle <= -45 || _angle >= 45) { _angle = _playerAngle; }
-                transform.rotation = Quaternion.Euler(new Vector3(0, 0, _angle));
+                    //transform.rotation = Quaternion.Euler(new Vector3(0, 0, Mathf.Clamp(_angle, _minAngle, _maxAngle)));                     
+                    //if (_angle <= -45 || _angle >= 45) { _angle = _playerAngle; }
+                    transform.rotation = Quaternion.Euler(new Vector3(0, 0, _angle));
+                } 
             }
-        }
+        //transform.rotation = Quaternion.Euler(new Vector3(0, 0, Mathf.Clamp(_angle, _minAngle, _maxAngle)));
         Debug.Log("Jump" +_jumping);
         Debug.Log("Grounded " +_grounded);
 
