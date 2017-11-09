@@ -621,42 +621,6 @@ Prefab:
       propertyPath: m_Name
       value: Player1
       objectReference: {fileID: 0}
-    - target: {fileID: 212657763066192140, guid: 3af26386f0a33436eb184d6793f1c5be,
-        type: 2}
-      propertyPath: m_Enabled
-      value: 1
-      objectReference: {fileID: 0}
-    - target: {fileID: 212657763066192140, guid: 3af26386f0a33436eb184d6793f1c5be,
-        type: 2}
-      propertyPath: m_Sprite
-      value: 
-      objectReference: {fileID: 21300000, guid: 0584a70bca44044e8bfac1e9d5c58ce8,
-        type: 3}
-    - target: {fileID: 1642895811762224, guid: 3af26386f0a33436eb184d6793f1c5be, type: 2}
-      propertyPath: m_Icon
-      value: 
-      objectReference: {fileID: 7250588514170254948, guid: 0000000000000000d000000000000000,
-        type: 0}
-    - target: {fileID: 1363964974607880, guid: 3af26386f0a33436eb184d6793f1c5be, type: 2}
-      propertyPath: m_Icon
-      value: 
-      objectReference: {fileID: 7250588514170254948, guid: 0000000000000000d000000000000000,
-        type: 0}
-    - target: {fileID: 1822202173482154, guid: 3af26386f0a33436eb184d6793f1c5be, type: 2}
-      propertyPath: m_Icon
-      value: 
-      objectReference: {fileID: 7250588514170254948, guid: 0000000000000000d000000000000000,
-        type: 0}
-    - target: {fileID: 1319862927478750, guid: 3af26386f0a33436eb184d6793f1c5be, type: 2}
-      propertyPath: m_Icon
-      value: 
-      objectReference: {fileID: 7250588514170254948, guid: 0000000000000000d000000000000000,
-        type: 0}
-    - target: {fileID: 114284203517019224, guid: 3af26386f0a33436eb184d6793f1c5be,
-        type: 2}
-      propertyPath: _canrotate
-      value: 1
-      objectReference: {fileID: 0}
     m_RemovedComponents: []
   m_ParentPrefab: {fileID: 100100000, guid: 3af26386f0a33436eb184d6793f1c5be, type: 2}
   m_IsPrefabParent: 0
@@ -3651,28 +3615,6 @@ Prefab:
     m_RemovedComponents: []
   m_ParentPrefab: {fileID: 100100000, guid: 10fcea7b0d73df943854d6f9986edf27, type: 2}
   m_IsPrefabParent: 0
---- !u!1 &1964772757 stripped
-GameObject:
-  m_PrefabParentObject: {fileID: 1602665582233268, guid: 3af26386f0a33436eb184d6793f1c5be,
-    type: 2}
-  m_PrefabInternal: {fileID: 224905400}
---- !u!95 &1964772758
-Animator:
-  serializedVersion: 3
-  m_ObjectHideFlags: 0
-  m_PrefabParentObject: {fileID: 0}
-  m_PrefabInternal: {fileID: 0}
-  m_GameObject: {fileID: 1964772757}
-  m_Enabled: 1
-  m_Avatar: {fileID: 0}
-  m_Controller: {fileID: 9100000, guid: a9dcb2276487a4c189fa22ba9386f03f, type: 2}
-  m_CullingMode: 0
-  m_UpdateMode: 0
-  m_ApplyRootMotion: 0
-  m_LinearVelocityBlending: 0
-  m_WarningMessage: 
-  m_HasTransformHierarchy: 1
-  m_AllowConstantClipSamplingOptimization: 1
 --- !u!1001 &1965168987
 Prefab:
   m_ObjectHideFlags: 0
