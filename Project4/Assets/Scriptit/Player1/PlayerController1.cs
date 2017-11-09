@@ -45,15 +45,6 @@ public class PlayerController1 : MonoBehaviour {
 
 	// Update is called once per frame
 	void FixedUpdate () {
-        /*Vector2 direction = Vector2.down;
-        Vector2 position = transform.position;
-        float distance = 3000.0f;
-        Debug.DrawRay(position, direction, Color.green);
-        RaycastHit2D hit = Physics2D.Raycast(position, direction, distance, whatIsGround);
-        transform.rotation = Quaternion.Euler(new Vector3(0, 0, _angle));*/
-
-            //_angle = _playerAngle;
-
         Collider2D[] colliders = Physics2D.OverlapCircleAll(GroundCheck.position, groundedRadius, whatIsGround);
         for (int i = 0; i < colliders.Length; i++)
         {
@@ -64,9 +55,13 @@ public class PlayerController1 : MonoBehaviour {
             }
             else { _jumping = true; _grounded = false; }
         }
+        //Käsittelevät animaatioita
+        
+        //Kontrolloivat pelaajan liikkumista
+       
         if (Input.GetAxis("Horizontal") > 0 && _canMove == true)
         {
-			anime.SetInteger ("State", 1);
+			
             if (_facingRight == false)
             {
                 Flip();
@@ -76,7 +71,7 @@ public class PlayerController1 : MonoBehaviour {
         }
         if (Input.GetAxis("Horizontal") < 0 && _canMove == true)
         {
-			anime.SetInteger ("State", 1);
+		
             //transform.Translate(new Vector3(-1*Speed * Time.deltaTime, 0, 0));
             if (_facingRight == true)
             {
@@ -88,13 +83,13 @@ public class PlayerController1 : MonoBehaviour {
         }
         if (Input.GetAxis("Horizontal") == 0)
         {
-			anime.SetInteger ("State", 0);
+		
             _rb.velocity = new Vector2(0,_rb.velocity.y);
         }
         if (Input.GetAxis("Fire1") > 0 && _grounded == true && _canMove == true)
         {
             //transform.position = new Vector2(_rb.velocity.x, Speed * Time.deltaTime);
-			anime.SetInteger("State", 3);
+		
             if (_frontCheck.IsGrounded())
             {
                 _rb.AddForce(new Vector2(0f, _jumpForce), ForceMode2D.Impulse);
@@ -141,6 +136,9 @@ public class PlayerController1 : MonoBehaviour {
         {
             _jumping = false;
         }*/
+        //Käsittelee Animaatioita
+        MovePlayer(_rb.velocity.x);
+        HandleJumpAndFall();
 	}
 
         //playerRigidbody2D.velocity = new Vector2(Speed, playerRigidbody2D.velocity.y);
@@ -207,6 +205,29 @@ public class PlayerController1 : MonoBehaviour {
         Vector3 theScale = transform.localScale;
         theScale.x *= -1;
         transform.localScale = theScale;
+    }
+
+    void MovePlayer(float playerSpeed)
+    {
+        if (playerSpeed != 0)
+        {
+            anime.SetInteger("State", 1);
+        }
+        else { anime.SetInteger("State", 0); }
+    }
+    void HandleJumpAndFall()
+    {
+        if (_jumping)
+        {
+            if (_rb.velocity.y > 0)
+            {
+                anime.SetInteger("State", 3);
+            }
+            else
+            {
+                anime.SetInteger("State", 0);
+            }
+        }
     }
     
 }
