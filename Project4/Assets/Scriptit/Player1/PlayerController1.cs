@@ -8,6 +8,7 @@ public class PlayerController1 : MonoBehaviour {
     private float _speed;
     private Rigidbody2D _rb;
     public Transform SpawnPoint;
+    public GameObject DeathAnimation;
     private bool _grounded, _jumping, _facingRight = true;
     private Vector3 latestCheckpoint;
     public AudioClip JumpSound;
@@ -21,12 +22,10 @@ public class PlayerController1 : MonoBehaviour {
     [SerializeField]
     private LayerMask whatIsGround;
     bool _canMove;
-    private float _playerAngle = 0f;
-    private float _angle = 0;
-    private float _minAngle = -25f;
-    private float _maxAngle = 25f;
+    private float _playerAngle = 0f, _angle = 0, _minAngle = -25f, _maxAngle = 25f;
     public bool _canrotate = true;
 	private Animator anime;
+
 	// Use this for initialization
 	void Start () {
 		GroundCheck = transform.Find("GroundCheck");
@@ -89,8 +88,9 @@ public class PlayerController1 : MonoBehaviour {
         if (Input.GetAxis("Fire1") > 0 && _grounded == true && _canMove == true)
         {
             //transform.position = new Vector2(_rb.velocity.x, Speed * Time.deltaTime);
-		
-            if (_frontCheck.IsGrounded())
+
+            //Lisää rearcheck jos haluat että molemmat tassut pitää olla maassa jos haluat hypätä
+            if (_frontCheck.IsGrounded()) //&& _rearCheck.IsGrounded())
             {
                 _rb.AddForce(new Vector2(0f, _jumpForce), ForceMode2D.Impulse);
                 _grounded = false;
@@ -102,6 +102,7 @@ public class PlayerController1 : MonoBehaviour {
             }
 
         }
+        //Rotatoi hahmoa raýcasting avulla. Tsekkaa Frontcheck & Rearcheck
             if (_jumping == false && _canrotate == true)
             {
 
@@ -113,6 +114,7 @@ public class PlayerController1 : MonoBehaviour {
                         _angle--;
                     }
                     else { _angle++; }
+
                     transform.rotation = Quaternion.Euler(new Vector3(0, 0, _angle));
 
 
@@ -125,12 +127,12 @@ public class PlayerController1 : MonoBehaviour {
                     transform.rotation = Quaternion.Euler(new Vector3(0, 0, _angle));
                     //transform.rotation = Quaternion.Euler(new Vector3(0, 0, Mathf.Clamp(_angle, _minAngle, _maxAngle)));                     
                     //if (_angle <= -45 || _angle >= 45) { _angle = _playerAngle; }
-                    transform.rotation = Quaternion.Euler(new Vector3(0, 0, _angle));
+                    //transform.rotation = Quaternion.Euler(new Vector3(0, 0, _angle));
                 } 
             }
         //transform.rotation = Quaternion.Euler(new Vector3(0, 0, Mathf.Clamp(_angle, _minAngle, _maxAngle)));
-        Debug.Log("Jump" +_jumping);
-        Debug.Log("Grounded " +_grounded);
+        /*Debug.Log("Jump" +_jumping);
+        Debug.Log("Grounded " +_grounded);*/
 
         /*if (_rearCheck.IsGrounded() && _frontCheck.IsGrounded())
         {
@@ -145,16 +147,13 @@ public class PlayerController1 : MonoBehaviour {
 
     void OnCollisionEnter2D(Collision2D col)
     {
-        /*if (col.gameObject.tag == "ground") //&& playerRigidbody2D.velocity.y == 0)
-        {
-            _grounded = true;
-            _jumping = false;
-        }*/
+
         if (col.gameObject.tag == "KillAxel")
         {
             //_canMove = false;
             //anime.Play("PlayerDeath");
-            //anime.SetInteger("State", 3);
+            GameObject explosion = GameObject.Instantiate(DeathAnimation);
+            explosion.transform.position = this.transform.position;
             Invoke("GoToCheckpoint", 0.3f);
 
             //GoToCheckpoint();

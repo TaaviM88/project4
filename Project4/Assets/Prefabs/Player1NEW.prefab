@@ -154,7 +154,7 @@ Transform:
   m_PrefabInternal: {fileID: 100100000}
   m_GameObject: {fileID: 1602665582233268}
   m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
-  m_LocalPosition: {x: -33, y: -17.5, z: 0}
+  m_LocalPosition: {x: -11.202648, y: -4.6570287, z: 0}
   m_LocalScale: {x: 0.8, y: 0.8, z: 1}
   m_Children:
   - {fileID: 4262876089253748}
@@ -285,6 +285,8 @@ MonoBehaviour:
   Speed: 5
   RunSpeed: 1
   SpawnPoint: {fileID: 0}
+  DeathAnimation: {fileID: 1102100441886514, guid: 571ca49ba9d19de4296d05b3bd9480cd,
+    type: 2}
   JumpSound: {fileID: 0}
   DeathSound: {fileID: 0}
   whatIsGround:
@@ -346,3 +348,4 @@ SpriteRenderer:
   m_AdaptiveModeThreshold: 0.5
   m_SpriteTileMode: 0
   m_WasSpriteAssigned: 1
+  m_MaskInteraction: 0
