@@ -26,6 +26,7 @@ public class PlayerController1 : MonoBehaviour {
     private float _minAngle = -25f;
     private float _maxAngle = 25f;
     public bool _canrotate = true;
+	private Animator anime;
 	// Use this for initialization
 	void Start () {
 		GroundCheck = transform.Find("GroundCheck");
@@ -39,6 +40,7 @@ public class PlayerController1 : MonoBehaviour {
         _frontCheck = GetComponentInChildren<FrontCheck>();
         _angle = _playerAngle;
         latestCheckpoint = transform.position;
+		anime = GetComponent<Animator>();
 	}
 
 	// Update is called once per frame
@@ -64,6 +66,7 @@ public class PlayerController1 : MonoBehaviour {
         }
         if (Input.GetAxis("Horizontal") > 0 && _canMove == true)
         {
+			anime.SetInteger ("State", 1);
             if (_facingRight == false)
             {
                 Flip();
@@ -73,6 +76,7 @@ public class PlayerController1 : MonoBehaviour {
         }
         if (Input.GetAxis("Horizontal") < 0 && _canMove == true)
         {
+			anime.SetInteger ("State", 1);
             //transform.Translate(new Vector3(-1*Speed * Time.deltaTime, 0, 0));
             if (_facingRight == true)
             {
@@ -84,17 +88,19 @@ public class PlayerController1 : MonoBehaviour {
         }
         if (Input.GetAxis("Horizontal") == 0)
         {
+			anime.SetInteger ("State", 0);
             _rb.velocity = new Vector2(0,_rb.velocity.y);
         }
         if (Input.GetAxis("Fire1") > 0 && _grounded == true && _canMove == true)
         {
             //transform.position = new Vector2(_rb.velocity.x, Speed * Time.deltaTime);
+			anime.SetInteger("State", 3);
             if (_frontCheck.IsGrounded())
             {
                 _rb.AddForce(new Vector2(0f, _jumpForce), ForceMode2D.Impulse);
                 _grounded = false;
                 _jumping = true;
-                //anime.SetInteger("State", 3);
+                
                 
                 //aktivoi tämä kun haluat hyppyäänen
                 //source.PlayOneShot(JumpSound);
