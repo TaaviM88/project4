@@ -17,3 +17,6 @@ EditorBuildSettings:
   - enabled: 1
     path: Assets/Scenet/Player2Wins.unity
     guid: 04dc608d3fb764208819ab1a4b41b2fe
+  - enabled: 1
+    path: Assets/Scenet/Introduction.unity
+    guid: 00000000000000000000000000000000
